@@ -23,8 +23,13 @@ class LinearKalmanFilter:
     self.H = H
     self.Q = Q
     self.R = R
-    self.x = x0
-    self.P = P0
+    self.X0 = x0
+    self.P0 = P0
+    self.reset()
+
+  def reset(self):
+    self.x = self.X0
+    self.P = self.P0
 
   def predict(self):
     """

@@ -70,14 +70,20 @@ roi = None
 ref_kpts = None
 ref_descs = None
 
-cap.set(cv2.CAP_PROP_POS_FRAMES, 1200)
 old_t = None
 
 clahe = cv2.createCLAHE(2.0, (8,8))
 
 with open('log.csv', 'w') as f:
   try:
-    while cv2.pollKey() != ord('q'):
+    while True:
+      match chr(max(cv2.pollKey(), 0)):
+        case 'q':
+          break
+        case 'r':
+          fil.reset()
+          old_t = None
+
       ret, frame = cap.read()
       if not ret:
         break
