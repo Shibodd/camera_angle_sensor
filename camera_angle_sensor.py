@@ -38,7 +38,7 @@ import math
 fil = kalman.LinearKalmanFilter(
   F = np.array([
     [1, math.nan],
-    [0, 1]
+    [0, math.nan]
   ]),
   H = np.array([
     [1, 0]
@@ -64,6 +64,7 @@ def signed_angle_dist(tgt, src):
 
 def set_deltat(fil: kalman.LinearKalmanFilter, dt: float):
   fil.F[0,1] = dt
+  fil.F[1, 1] = 0.3 ** dt
 
 roi = None
 ref_kpts = None
